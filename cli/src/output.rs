@@ -485,6 +485,14 @@ pub fn print_response_with_opts(resp: &Response, action: Option<&str>, opts: &Ou
             );
             return;
         }
+        // Computed styles (from `get styles`)
+        if let Some(styles) = data.get("styles") {
+            println!(
+                "{}",
+                serde_json::to_string_pretty(styles).unwrap_or_default()
+            );
+            return;
+        }
         // Element styles
         if let Some(elements) = data.get("elements").and_then(|v| v.as_array()) {
             for (i, el) in elements.iter().enumerate() {

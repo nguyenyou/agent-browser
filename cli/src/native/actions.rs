@@ -4258,7 +4258,7 @@ async fn handle_boundingbox(cmd: &Value, state: &mut DaemonState) -> Result<Valu
         &state.iframe_sessions,
     )
     .await?;
-    Ok(bbox)
+    Ok(json!({ "box": bbox }))
 }
 
 async fn handle_innertext(cmd: &Value, state: &mut DaemonState) -> Result<Value, String> {
